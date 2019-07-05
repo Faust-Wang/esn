@@ -1,0 +1,211 @@
+\documentclass{beamer}
+
+\usetheme{Berkeley}
+
+% Title Page 
+\title[ACC2016]
+{A Recurrent Neural Network for Non-Linear Control of a Fixed-Wing UAV}
+
+\author
+{Ohanes Dadian\inst{1} and Subodh Bhandari\inst{2}}
+
+\institute[University]
+{
+	\inst{1}
+	Department of Computer Science\\
+	\inst{2}
+	Department of Aerospace Engineering\\
+	Cal Poly Pomona
+}
+
+\date[Conference Date]
+{American Control Conference, 2016}
+\subject{Flight Control}
+
+\begin{document}
+    % Title page
+	\frame{\titlepage}
+	\begin{frame}
+		\frametitle{Topics}
+		\tableofcontents[currentsection]
+	\end{frame}
+	
+	\begin{frame}
+		\section[Research Objectives]{Research Objectives}
+		\frametitle{Research Objectives}
+		\begin{itemize}
+			\item Develop Neural Networks for Performing Non-Linear Control of Unmanned Aerial Vehicles.
+			\begin{itemize}
+				\item Both Feed Forward and Recurrent Models
+			\end{itemize}
+			\item A Recurrent Model will allow for closer aherence to control laws.
+			\begin{itemize}
+				\item Provide a feedback loop, allowing for adaptive control.
+			\end{itemize}
+			\item Provide an open platform for on campus UAV fleet.
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\section[Motivation]{Motivation}
+		\frametitle{Motivation}
+		\begin{itemize}
+			\item Unmanned Aerial Vehicles (UAVs) requires the following to be registered in the National Airspace System (NAS).
+			\begin{itemize}
+				\item Further autonomy.
+				\item Expand flight envelope.
+			\end{itemize}
+			\item Gain scheduling is a popular means of accomplishing this goal.
+			\begin{itemize}
+				\item Computationally Expensive.
+				\item High Design and Implementation Costs.
+				\item Rapid changes in gaings lead to instability.
+				\item Pre-computed predictions may lead to vehicle failure.
+			\end{itemize}
+			\item A non-linear model would be better suited for this task.
+			\begin{itemize}
+				\item Neural Networks provide a connectionist and non-linear approach to solving computational problems.
+				\item Solves problems the way humans do.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\section[Artificial Neural Networks]{Artificial Neural Networks}
+		\frametitle{Artificial Neural Networks}
+		\begin{itemize}
+			\item Composed of several interconnected artificial neuraons that work in parallel to solve a problem.
+			\item The artificial neuron is the corner stone of a neural network.
+			\begin{itemize}
+				\item Behaves like a biological nervous system.
+				\begin{itemize}
+					\item Neuron either fires or doesn't (1 or 0).
+				\end{itemize}
+				\item Multiplexes input signals into single output signal.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Artifical Neural Networks 2}
+		\begin{itemize}
+			\item Connections between neurons are weighted.
+			\begin{itemize}
+				\item Dictate the cost value of each possible path.
+			\end{itemize}
+			\item Weights of connections provide ability to find most fitted models.
+			\begin{itemize}
+				\item Follow path to least cost.
+			\end{itemize}
+			\item Neural Networks are trained using a learning algorithm.
+			\begin{itemize}
+				\item Uses training data which labels acceptable and unacceptable output.
+			\end{itemize}
+			\item Mean Square Error used to determine if the model is fitted.
+		\end{itemize}	
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Artifical Neural Networks 3}
+		\begin{itemize}
+			\item Neural Nets can be used to map complex relationships between inputs and outputs or perform pattern recognition.
+			\item Adaptive nature allows for response to unexpected inputs and patterns.
+			\item Come in many forms.
+			\begin{itemize}
+				\item Feed-forward
+				\item Recurrent
+			\end{itemize}
+			\item Architecture
+			\begin{itemize}
+				\item Contain input layer, hidden layers, and output layer.
+			\end{itemize}
+		\end{itemize}	
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Recurrent Neural Network}
+		\begin{itemize}
+			\item A recurrent network is a class of network where all connections form a directed cycle.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\section[Echo State Network]{Echo State Network}
+		\frametitle{Echo State Network}
+		\begin{itemize}
+			\item Provide current knowlede with simpler implementation.
+			\item Random sparsely connected hidden layer.
+			\item Weights are fixed.
+			\item Hidden layer behaves as a reservior.
+			\begin{itemize}
+				\item Implements a leak rate for current knowledge.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{ESN Algorithm}
+		\begin{itemize}
+			\item Generate a large random reservoir.
+			\item Train using PID input and collect corresponding reservior activation states.
+			\begin{itemize}
+				\item Nonlinear transform of input signal (square wave) and the output signal (sine wave).
+			\end{itemize}
+			\item Compute the linear readout weights from the reservior using linear regression (Weiner-Hopf method).
+			\item Compute Mean Square Error.
+			\item Retrain if MSE is too high.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Why ESN for Control and Identification}
+		\begin{itemize}
+			\item Simple design and implementation.
+			\item{Can easily map linear systems methods to nonlinear systems.}
+			\begin{itemize}
+				\item{Nonlinear transform of input signal (square wave) and the output signal (sine wave).}
+			\end{itemize}
+			\item Short-term memory aids in enhancing learning process.
+			\item Compute Mean Square Error.
+			\item Retrain if MSE is too high.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{Why ESN for Control and Identification}
+		\begin{itemize}
+			\item Simple design and implementation.
+			\item Can easily map linear systems methods to nonlinear systems.
+			\begin{itemize}
+				\item Nonlinear transform of input signal (square wave) and the output signal (sine wave).
+			\end{itemize}
+			\item Short-term memory aids in enhancing learning process.
+			\item Highly adaptive behavior. 
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\section[Results]{Results}
+		\frametitle{Results}
+
+		\begin{itemize}
+			\item The recurrent model was trained with data obtained from flight tests with our TwinEngine.
+			\item Used data containing row, pith, and yaw axes for foreward and hoving motion.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\section[Conclusion]{Conclusion}
+		\frametitle{Conclusion}
+		\begin{itemize}
+			\item ESN can successfully perform identification and nonlinear control of UAVs.
+			\item Able to perfrom both offline and online learning.
+			\item Offline training allows for inversion of feedback linearization to be computed.
+			\item Simulation showed controller performance signicantly improved in both open and closed loop responses.
+			\item ESN faciliated adaptiblity with more ease than a feed forward model.
+			\item Able to decrease delta of MSE with less training iterations.
+			\item Shorter burts and Lyapunov stable.	
+		\end{itemize}
+	\end{frame}
+\end{document}
+
